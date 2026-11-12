@@ -467,7 +467,7 @@ mark.hl { background: linear-gradient(transparent 60%, rgba(200,255,46,.32) 60%)
 .pcard { transition: transform .35s ease, box-shadow .35s ease, opacity .35s ease; }
 .pcard.hide { display: none; }
 .pcard[data-cat="apps"] { --acc: var(--volt); } .pcard[data-cat="agents"] { --acc: #b79bff; } .pcard[data-cat="auto"] { --acc: var(--teal); }
-.pcard[data-cat="web"] { --acc: var(--amber); } .pcard[data-cat="web3d"] { --acc: var(--coral); } .pcard[data-cat="ideas"] { --acc: var(--blue); }
+.pcard[data-cat="web"] { --acc: var(--amber); } .pcard[data-cat="web3d"] { --acc: var(--coral); } .pcard[data-cat="video"] { --acc: var(--blue); }
 .pcard .tagline { margin-bottom: 8px; }
 .points { list-style: none; padding: 4px 0 0; display: grid; gap: 7px; }
 .points li { position: relative; padding-left: 18px; font-size: 14px; color: var(--muted); }
@@ -612,6 +612,44 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
 .preview.mini .cube3 { transform-origin: center; scale: .8; }
 .preview.mini.pf .sheet { width: 90px; height: 60px; margin: -30px 0 0 -45px; }
 
+/* skill map */
+.skl { display: flex; flex-direction: column; gap: 4px; }
+.skl .code { align-self: flex-start; font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; padding: 5px 12px; border-radius: 99px; color: var(--volt); border: 1px solid rgba(200,255,46,.35); background: rgba(200,255,46,.07); margin-bottom: 14px; transform: translateZ(24px); }
+.skl .tg { color: var(--text); font-family: var(--display); font-weight: 600; font-size: 1.02rem; margin-bottom: 14px; opacity: .9; }
+.skl .mk-l { font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.mk-c { display: flex; flex-wrap: wrap; gap: 8px; }
+.pl { font-size: 13.5px; font-weight: 600; padding: 7px 14px; border-radius: 99px; border: 1px solid var(--border); background: rgba(255,255,255,.04); color: var(--text); transition: all .2s; }
+.pl:hover { background: var(--volt); color: #0a0a12; border-color: var(--volt); text-decoration: none; transform: translateY(-2px); }
+
+/* video / design previews */
+.vd { position: absolute; inset: 14px; display: grid; grid-template-rows: 1fr auto auto; gap: 8px; }
+.vd-frame { position: relative; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg, #14102b, #0b1a1f); border: 1px solid rgba(110,168,255,.35); display: grid; place-items: center; }
+.vd-s { position: absolute; left: 12px; top: 12px; font-size: 12px; letter-spacing: 2px; font-weight: 600; opacity: 0; color: var(--volt); }
+.vd-s.s1 { animation: vdS 6s infinite; } .vd-s.s2 { color: var(--teal); animation: vdS 6s 2s infinite; } .vd-s.s3 { color: var(--amber); animation: vdS 6s 4s infinite; }
+@keyframes vdS { 0%, 4% { opacity: 0; transform: translateY(6px); } 10%, 28% { opacity: 1; transform: none; } 34%, 100% { opacity: 0; } }
+.vd-play { width: 0; height: 0; border-left: 22px solid rgba(255,255,255,.9); border-top: 13px solid transparent; border-bottom: 13px solid transparent; margin-left: 6px; animation: vdP 3s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(110,168,255,.7)); }
+@keyframes vdP { 0%, 100% { transform: scale(.9); opacity: .75; } 50% { transform: scale(1.12); opacity: 1; } }
+.vd-bar { height: 4px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; }
+.vd-bar u { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--blue), var(--volt)); transform-origin: 0 0; animation: vdBar 6s linear infinite; }
+@keyframes vdBar { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+.vd-t { display: flex; justify-content: space-between; font-size: 9.5px; letter-spacing: 1.4px; color: var(--muted); }
+.vd-page { position: absolute; inset: 10px 20px; display: grid; gap: 7px; align-content: start; animation: vdScroll 6s ease-in-out infinite; }
+.vd-page u { display: block; height: 14px; border-radius: 4px; background: rgba(255,255,255,.12); } .vd-page u:nth-child(1) { height: 26px; background: rgba(200,255,46,.25); } .vd-page u:nth-child(3) { width: 70%; }
+@keyframes vdScroll { 0%, 10% { transform: none; } 70%, 100% { transform: translateY(-34px); } }
+.fs { position: absolute; left: 0; right: 0; top: 50%; height: 62px; margin-top: -31px; overflow: hidden; background: rgba(110,168,255,.06); border-block: 1px dashed rgba(110,168,255,.5); }
+.fs-t { display: flex; gap: 10px; width: max-content; padding: 6px 0 6px 10px; animation: marquee 9s linear infinite; }
+.fs-t i { width: 74px; height: 50px; flex: none; border-radius: 6px; display: grid; place-items: center; font-style: normal; font-size: 9.5px; font-weight: 700; letter-spacing: 1px; color: #0a0a12; background: linear-gradient(135deg, var(--volt), var(--teal)); }
+.fs-t i:nth-child(3n+2) { background: linear-gradient(135deg, var(--violet), var(--blue)); color: #fff; } .fs-t i:nth-child(3n) { background: linear-gradient(135deg, var(--coral), var(--amber)); }
+.bn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.bn i { display: grid; place-items: center; font-style: normal; font-size: 10px; font-weight: 700; color: #0a0a12; background: linear-gradient(135deg, var(--volt), var(--teal)); border-radius: 6px; animation: bnPop 4s infinite; }
+.bn .b1 { width: 56px; height: 56px; } .bn .b2 { width: 96px; height: 54px; background: linear-gradient(135deg, var(--violet), var(--blue)); color: #fff; animation-delay: .25s; } .bn .b3 { width: 42px; height: 76px; background: linear-gradient(135deg, var(--coral), var(--amber)); animation-delay: .5s; }
+@keyframes bnPop { 0%, 6% { opacity: 0; transform: scale(.6) translateY(10px); } 18%, 86% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.cvd { position: absolute; left: 50%; top: 50%; width: 66px; height: 90px; margin: -45px 0 0 -33px; border-radius: 7px; background: #151a33; border: 1.5px solid rgba(110,168,255,.6); padding: 8px 7px; display: grid; gap: 5px; align-content: start; }
+.cvd b { display: block; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, var(--volt), var(--teal)); }
+.cvd u { display: block; height: 4px; border-radius: 2px; background: rgba(255,255,255,.25); } .cvd u:nth-child(3) { width: 70%; }
+.cvd s { position: absolute; left: 0; right: 0; height: 14px; background: linear-gradient(transparent, rgba(200,255,46,.4), transparent); animation: miScan 2.6s linear infinite; text-decoration: none; }
+.cvd span { position: absolute; right: -26px; bottom: 8px; font-size: 9px; padding: 3px 6px; border-radius: 5px; border: 1.5px solid var(--volt); color: var(--volt); background: #0b0a16; animation: miStamp 4s infinite; }
+
 @media (max-width: 600px) { .name { font-size: 10.2vw; } }
 @media (max-width: 960px) { .exp { grid-template-columns: 1fr; } .row2 { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .w > span { transform: none !important; } .nh-snake, .np-graph path { stroke-dashoffset: 0 !important; } .ns-shutter { display: none; } .nh-t1 { display: none; } .nh-t2, .nh-safe { opacity: 1 !important; } .np-ms .b, .np-ms .c { display: none; } .np-ms .a { opacity: 1 !important; } }
@@ -664,6 +702,7 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
   <ul id="menu">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#skillmap">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -685,7 +724,7 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="headline">I build <mark class="hl">AI agents</mark> and <mark class="hl">automations</mark> that take repetitive work off your team, and solve the IT problems around them.</p>
         <p class="sub">Founder of Nexora AI Agency &amp; Services. Three years building AI agents, n8n workflows, chatbots, voice assistants, 3D websites and apps. You deal directly with me, from the first message to launch and support.</p>
         <div class="btns"><a class="btn primary" href="#projects">View my projects &rarr;</a><a class="btn" href="#contact">Start a project</a></div>
-        <div class="hero-stats"><div><b>3 yrs</b><span>Hands-on experience</span></div><div><b>11</b><span>Projects built</span></div><div><b>24 h</b><span>Reply on every enquiry</span></div></div>
+        <div class="hero-stats"><div><b>3 yrs</b><span>Hands-on experience</span></div><div><b>23</b><span>Projects in my portfolio</span></div><div><b>24 h</b><span>Reply on every enquiry</span></div></div>
       </div>
       <div class="hero-visual" aria-hidden="true">
         <div class="console glass" data-tilt>
@@ -736,12 +775,20 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
     <div class="grid"><div class="glass card svc" data-tilt><span class="code">AGENTS</span><h3>AI Agents</h3><p class="tg">Digital employees that work 24/7.</p><p>Custom AI agents that take care of support, sales and daily operations, so you don’t have to.</p><ul><li>Customer support agent</li><li>Sales &amp; lead follow-up agent</li><li>Internal task assistant</li><li>Connected to your tools and data</li></ul><a class="go" href="#contact">Get this service →</a></div><div class="glass card svc" data-tilt><span class="code">FLOW</span><h3>Workflow Automation</h3><p class="tg">Kill repetitive work for good.</p><p>Connect your apps and let routine work run itself, accurately, every single time.</p><ul><li>Auto emails, reports and invoices</li><li>Lead capture and routing</li><li>Scheduled tasks and alerts</li><li>Sheets, CRM and app integrations</li></ul><a class="go" href="#contact">Get this service →</a></div><div class="glass card svc" data-tilt><span class="code">BOTS</span><h3>Chatbots &amp; Voice AI</h3><p class="tg">Answer every customer, instantly.</p><p>Branded chatbots and voice assistants that talk to your customers around the clock.</p><ul><li>WhatsApp, website and social bots</li><li>Voice assistants for calls and bookings</li><li>Trained on your own business data</li><li>Captures leads automatically</li></ul><a class="go" href="#contact">Get this service →</a></div><div class="glass card svc" data-tilt><span class="code">VIDEO</span><h3>AI Video Generation</h3><p class="tg">Scroll-stopping videos, made fast.</p><p>Cinematic promo and product videos created with AI, ready to post and ready to sell.</p><ul><li>Promo and product ads</li><li>Voice-over, music and effects</li><li>Reels, shorts and YouTube formats</li><li>Fast turnaround</li></ul><a class="go" href="#contact">Get this service →</a></div><div class="glass card svc" data-tilt><span class="code">ADS</span><h3>Ads &amp; Banners</h3><p class="tg">Creatives built to win clicks.</p><p>Eye-catching ad creatives and banners that look premium and keep your brand consistent.</p><ul><li>Facebook, Instagram and YouTube sizes</li><li>Thumbnails and social posts</li><li>Matching brand colours and fonts</li><li>Editable source files</li></ul><a class="go" href="#contact">Get this service →</a></div><div class="glass card svc" data-tilt><span class="code">EDIT</span><h3>Video Editing</h3><p class="tg">Edits that hold attention.</p><p>Clean, punchy editing that keeps viewers watching until the last second.</p><ul><li>Reels, shorts and ads</li><li>Motion text and subtitles</li><li>Colour grading and sound clean-up</li><li>Simple edits to full productions</li></ul><a class="go" href="#contact">Get this service →</a></div><div class="glass card svc" data-tilt><span class="code">3D</span><h3>3D Websites</h3><p class="tg">Websites people remember.</p><p>Immersive, animated 3D websites that make visitors stop and say “wow”.</p><ul><li>Real-time 3D scenes</li><li>Smooth scroll animations</li><li>Fast, mobile-friendly and secure</li><li>Hosting and domain setup</li></ul><a class="go" href="#contact">Get this service →</a></div><div class="glass card svc" data-tilt><span class="code">APPS</span><h3>App Development</h3><p class="tg">From simple tools to full apps.</p><p>Mobile and web apps designed, built and launched end-to-end, including AI-powered ones like NexoHypic.</p><ul><li>Simple to advanced apps</li><li>AI features and dashboards</li><li>Clean, modern UI</li><li>Launch and ongoing support</li></ul><a class="go" href="#contact">Get this service →</a></div><div class="glass card svc" data-tilt><span class="code">CV</span><h3>CV &amp; Portfolio</h3><p class="tg">Stand out. Get shortlisted.</p><p>Professional CVs and portfolios that present your skills the way employers want to see them.</p><ul><li>ATS-friendly CV layouts</li><li>Modern, clean design</li><li>Portfolio websites</li><li>Print and digital versions</li></ul><a class="go" href="#contact">Get this service →</a></div><div class="glass card svc" data-tilt><span class="code">IT</span><h3>IT Solutions</h3><p class="tg">Tech problems solved, fast.</p><p>Stuck with a technical problem? Get clear, practical solutions without the jargon.</p><ul><li>Troubleshooting and fixes</li><li>Domain, hosting and email setup</li><li>Software and tools setup</li><li>Remote help and guidance</li></ul><a class="go" href="#contact">Get this service →</a></div></div>
   </section>
 
+  <!-- SKILL MAP -->
+  <section id="skillmap" class="reveal">
+    <div class="eyebrow">What I make</div>
+    <h2>Every skill, and <span class="grad">what it builds</span></h2>
+    <p class="sub">Six skills. Under each one you can see the projects it has produced. Tap a project name to jump to it.</p>
+    <div class="grid"><div class="glass card skl" data-tilt><span class="code">APPS</span><h3>AI Apps</h3><p class="tg">Mobile and web apps with AI at the core.</p><p class="mk-l mono">What it makes · 4</p><div class="mk-c"><a class="pl" href="#projects" data-go="apps">NexoHypic</a><a class="pl" href="#projects" data-go="apps">NexoPing</a><a class="pl" href="#projects" data-go="apps">Nexora AI</a><a class="pl" href="#projects" data-go="apps">AI Scanner App</a></div></div><div class="glass card skl" data-tilt><span class="code">AGENTS</span><h3>AI Agents &amp; Voice</h3><p class="tg">Assistants that talk, think and act for you.</p><p class="mk-l mono">What it makes · 4</p><div class="mk-c"><a class="pl" href="#projects" data-go="agents">J.A.R.V.I.S</a><a class="pl" href="#projects" data-go="agents">AI Chatbot Automation</a><a class="pl" href="#projects" data-go="agents">Customer Support Agent</a><a class="pl" href="#projects" data-go="agents">Voice Booking Assistant</a></div></div><div class="glass card skl" data-tilt><span class="code">FLOW</span><h3>Workflow Automation</h3><p class="tg">n8n pipelines that remove repetitive work.</p><p class="mk-l mono">What it makes · 4</p><div class="mk-c"><a class="pl" href="#projects" data-go="auto">Lead Qualification</a><a class="pl" href="#projects" data-go="auto">AI Social Media Management</a><a class="pl" href="#projects" data-go="auto">Invoice &amp; Report Automation</a><a class="pl" href="#projects" data-go="auto">CRM &amp; Sheets Sync</a></div></div><div class="glass card skl" data-tilt><span class="code">WEB</span><h3>Web Development</h3><p class="tg">Fast, responsive websites and web apps.</p><p class="mk-l mono">What it makes · 3</p><div class="mk-c"><a class="pl" href="#projects" data-go="web">Kilo Dispatch</a><a class="pl" href="#projects" data-go="web">Loom &amp; Field</a><a class="pl" href="#projects" data-go="web">Portfolio Website</a></div></div><div class="glass card skl" data-tilt><span class="code">3D</span><h3>3D &amp; Interactive</h3><p class="tg">Websites with real-time 3D that people remember.</p><p class="mk-l mono">What it makes · 3</p><div class="mk-c"><a class="pl" href="#projects" data-go="web3d">Nexora Agency Website</a><a class="pl" href="#projects" data-go="web3d">3D Product Showcase</a><a class="pl" href="#projects" data-go="web3d">3D Landing Page</a></div></div><div class="glass card skl" data-tilt><span class="code">VIDEO</span><h3>Ad &amp; Video Making</h3><p class="tg">Promo videos, banners and brand design.</p><p class="mk-l mono">What it makes · 5</p><div class="mk-c"><a class="pl" href="#projects" data-go="video">NexoHypic — App Ad</a><a class="pl" href="#projects" data-go="video">NexoHypic — Website Promo</a><a class="pl" href="#projects" data-go="video">Product Promo Video</a><a class="pl" href="#projects" data-go="video">Brand Banner Pack</a><a class="pl" href="#projects" data-go="video">Professional CV Design</a></div></div></div>
+  </section>
+
   <!-- PROJECTS -->
   <section id="projects" class="reveal">
     <div class="eyebrow">Portfolio</div>
     <h2>Every skill. <span class="grad">Real projects.</span></h2>
-    <p class="sub">Choose a skill to filter. Open a card for what it does and how it is built. Each preview is a small animation of how that project behaves.</p>
-    <div class="filters" role="tablist" aria-label="Filter projects"><button class="chip on" data-f="all" type="button">All<small>18</small></button><button class="chip" data-f="apps" type="button">AI Apps<small>3</small></button><button class="chip" data-f="agents" type="button">Agents &amp; Voice<small>2</small></button><button class="chip" data-f="auto" type="button">Automation<small>2</small></button><button class="chip" data-f="web" type="button">Web<small>3</small></button><button class="chip" data-f="web3d" type="button">3D<small>1</small></button><button class="chip" data-f="ideas" type="button">Available to build<small>7</small></button></div>
+    <p class="sub">Choose a skill to filter. Open a card for what it does. Each preview is a small animation of how that project behaves.</p>
+    <div class="filters" role="tablist" aria-label="Filter projects"><button class="chip on" data-f="all" type="button">All<small>23</small></button><button class="chip" data-f="apps" type="button">AI Apps<small>4</small></button><button class="chip" data-f="agents" type="button">AI Agents &amp; Voice<small>4</small></button><button class="chip" data-f="auto" type="button">Workflow Automation<small>4</small></button><button class="chip" data-f="web" type="button">Web Development<small>3</small></button><button class="chip" data-f="web3d" type="button">3D &amp; Interactive<small>3</small></button><button class="chip" data-f="video" type="button">Ad &amp; Video Making<small>5</small></button></div>
     <div class="grid projects" id="pgrid">
       <article class="glass card pcard" data-tilt data-cat="apps">
         <div class="preview pv-grid" aria-hidden="true"><div class="nh-view"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i>
@@ -753,7 +800,7 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">Native Android app + AI backend</p>
         <p>An AI app that suggests what snake might be in a photo and what might be affecting a plant or crop, with honest uncertainty, safety notices and a follow-up AI chat in English, Urdu and Roman Urdu. Results are suggestions, never a substitute for an expert.</p>
         <div><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Python</span></div>
-        <div class="links"><a href="https://nexohypic.runs-on.dev/" target="_blank" rel="noopener">Visit NexoHypic website</a></div>
+        <div class="links"><a href="https://nexohypic.runs-on.dev/" target="_blank" rel="noopener">Visit NexoHypic website</a><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Snake photo identification with alternative matches and stated uncertainty</li><li>Plant and crop health guidance with cautious, non-chemical next steps</li><li>Follow-up AI chat with remaining quota shown</li><li>English, Urdu and Roman Urdu with safety notices</li><li>Camera or gallery, scan history, account and data deletion</li><li>Secure sign-in, accounts and its own AI backend</li></ul></div></details>
       </article>
       <article class="glass card pcard" data-tilt data-cat="apps">
@@ -766,7 +813,7 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">Android gaming network optimizer</p>
         <p>An Android app for PUBG Mobile and Free Fire players that monitors the connection live (ping, jitter, packet loss and stability) wrapped in a premium 3D holographic interface.</p>
         <div><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Cloudflare</span><span class="tag">TypeScript</span></div>
-        
+        <div class="links"><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Live network monitoring: ping, jitter, packet loss, stability</li><li>Network Lab that measures real TCP connect latency from the device</li><li>Smart gateway routing is on the roadmap</li><li>Premium 3D holographic interface</li><li>Honest by design: only real measurements, never fake numbers</li></ul></div></details>
       </article>
       <article class="glass card pcard" data-tilt data-cat="apps">
@@ -778,8 +825,18 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">Full-stack AI web app</p>
         <p>A secure, database-backed web app for AI-assisted project planning, task management and workflow automation, with a glassmorphism dark UI.</p>
         <div><span class="tag">React</span><span class="tag">Vite</span><span class="tag">TypeScript</span><span class="tag">Tailwind</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Supabase</span></div>
-        
+        <div class="links"><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>AI chat through a secure backend (Groq, Gemini, Claude or OpenAI)</li><li>Projects with progress tracking and tasks with status flow</li><li>n8n workflow triggering from inside the app</li><li>Secure sign-in and private user data</li><li>Works on web, with Android and Windows builds</li></ul></div></details>
+      </article>
+      <article class="glass card pcard" data-tilt data-cat="apps">
+        <div class="preview mini pv-grid" aria-hidden="true"><div class="mi-box"><b></b></div></div>
+        <span class="status">Project</span>
+        <h3>AI Scanner App</h3>
+        <p class="tagline">Image-analysis app</p>
+        <p>A mobile app that analyses a photo and explains what it sees: products, plants, documents or anything your business needs.</p>
+        <div><span class="tag">Android</span><span class="tag">AI vision</span></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Camera and gallery capture</li><li>AI analysis with clear explanations</li><li>History and sharing</li><li>Custom to your industry</li></ul></div></details>
       </article>
       <article class="glass card pcard" data-tilt data-cat="agents">
         <div class="preview pv-grid" aria-hidden="true"><div class="jv-mic"><b></b><b></b><b></b></div><div class="jv-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="jv-term mono">&gt; <span>open spotify</span></div></div>
@@ -788,7 +845,7 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">Voice-controlled AI PC assistant</p>
         <p>A voice assistant for Windows that listens, speaks Urdu and English and controls the PC, with a command-center dashboard, built to ask before it does anything risky. A learning project, features are still being tested.</p>
         <div><span class="tag">Python</span><span class="tag">Groq Whisper</span><span class="tag">Voice AI</span><span class="tag">n8n</span></div>
-        
+        <div class="links"><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Speaks and understands Urdu and English with neural voices</li><li>Owner voice-lock and always-listening mode</li><li>Command-center dashboard: system stats, network panel, weather, important emails</li><li>WhatsApp, Telegram and n8n integrations</li><li>Asks for confirmation before risky actions</li><li>Safe by design: activity log and backups</li></ul></div></details>
       </article>
       <article class="glass card pcard" data-tilt data-cat="agents">
@@ -798,8 +855,28 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">Webhook chatbot</p>
         <p>An intelligent chatbot that listens for incoming messages through a public webhook and replies with AI-generated answers in real time.</p>
         <div><span class="tag">Groq AI</span><span class="tag">Webhook</span><span class="tag">n8n</span></div>
-        <div class="links"><a href="https://claude.ai/artifact/C81YQBz3rHQ1rYvBE5or3M" target="_blank" rel="noopener">Project page</a></div>
+        <div class="links"><a href="https://claude.ai/artifact/C81YQBz3rHQ1rYvBE5or3M" target="_blank" rel="noopener">Project page</a><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Public webhook receives chat messages</li><li>Groq-powered AI replies in real time</li><li>Simple chat interface for testing</li><li>Easy to connect to websites and messaging apps</li></ul></div></details>
+      </article>
+      <article class="glass card pcard" data-tilt data-cat="agents">
+        <div class="preview mini pv-grid" aria-hidden="true"><div class="mi-chat"><span class="u">Do you ship to Dubai?</span><span class="a"><i></i><i></i><i></i></span></div></div>
+        <span class="status">Project</span>
+        <h3>Customer Support Agent</h3>
+        <p class="tagline">AI agent</p>
+        <p>An agent trained on your business that answers customers day and night and hands over to you when needed.</p>
+        <div><span class="tag">AI agent</span><span class="tag">Webhook</span></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Learns from your FAQs and documents</li><li>Works on WhatsApp, website and social</li><li>Captures leads automatically</li><li>Escalates tricky chats to you</li></ul></div></details>
+      </article>
+      <article class="glass card pcard" data-tilt data-cat="agents">
+        <div class="preview mini pv-grid" aria-hidden="true"><div class="mi-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="mi-chip mono">BOOKED ✓</span></div>
+        <span class="status">Project</span>
+        <h3>Voice Booking Assistant</h3>
+        <p class="tagline">Voice AI</p>
+        <p>A voice assistant that answers calls, understands the request and books appointments.</p>
+        <div><span class="tag">Voice AI</span><span class="tag">Automation</span></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Natural voice in your customers’ language</li><li>Calendar and sheet integration</li><li>Call summaries sent to you</li></ul></div></details>
       </article>
       <article class="glass card pcard" data-tilt data-cat="auto">
         <div class="preview pv-grid" aria-hidden="true"><div class="lq-mail"></div><div class="lq-gate mono"><small>Budget check</small><div class="lq-track"><u></u></div><div class="lq-ok">✓ QUALIFIED</div></div><div class="lq-cap mono">Sheet</div><div class="lq-sheet"><i></i><i></i><i class="new"></i></div></div>
@@ -808,7 +885,7 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">n8n automation</p>
         <p>Automated lead handling that reads incoming emails, checks the budget and instantly classifies each lead as qualified or unqualified.</p>
         <div><span class="tag">n8n</span><span class="tag">Gmail API</span><span class="tag">Google Sheets</span></div>
-        <div class="links"><a href="https://claude.ai/artifact/VmjyA3WmDgSaBbHChv2h7D" target="_blank" rel="noopener">Project page</a></div>
+        <div class="links"><a href="https://claude.ai/artifact/VmjyA3WmDgSaBbHChv2h7D" target="_blank" rel="noopener">Project page</a><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Email-triggered workflow through the Gmail API</li><li>Budget threshold with conditional logic</li><li>Qualified and unqualified leads routed differently</li><li>Every lead logged to Google Sheets automatically</li></ul></div></details>
       </article>
       <article class="glass card pcard" data-tilt data-cat="auto">
@@ -819,8 +896,28 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">n8n automation</p>
         <p>End-to-end content automation: from a topic to a finished video published on YouTube, with a log of everything created.</p>
         <div><span class="tag">n8n</span><span class="tag">Groq AI</span><span class="tag">YouTube API</span><span class="tag">Google Sheets</span></div>
-        <div class="links"><a href="https://claude.ai/artifact/56nA4b1CL99a4xzfThe26Q" target="_blank" rel="noopener">Project page</a></div>
+        <div class="links"><a href="https://claude.ai/artifact/56nA4b1CL99a4xzfThe26Q" target="_blank" rel="noopener">Project page</a><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Topic-based video script generation with Groq AI</li><li>Voiceovers in both English and Urdu</li><li>Automatic YouTube upload and publishing</li><li>Content log kept in Google Sheets</li></ul></div></details>
+      </article>
+      <article class="glass card pcard" data-tilt data-cat="auto">
+        <div class="preview mini pv-grid" aria-hidden="true"><div class="mi-doc"><u></u><u></u><u></u><u></u><b>PAID</b></div></div>
+        <span class="status">Project</span>
+        <h3>Invoice &amp; Report Automation</h3>
+        <p class="tagline">Automation</p>
+        <p>Invoices, reports and reminders created and sent automatically on schedule.</p>
+        <div><span class="tag">n8n</span><span class="tag">Sheets</span></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Pulls data from your sheets or apps</li><li>Generates and emails documents</li><li>Reminders for late payments</li></ul></div></details>
+      </article>
+      <article class="glass card pcard" data-tilt data-cat="auto">
+        <div class="preview mini pv-grid" aria-hidden="true"><div class="mi-a mono">CRM</div><div class="mi-b mono">SHEET</div><i class="mi-d d1"></i><i class="mi-d d2"></i></div>
+        <span class="status">Project</span>
+        <h3>CRM &amp; Sheets Sync</h3>
+        <p class="tagline">Automation</p>
+        <p>Keep leads, customers and orders in sync across your tools without copy-pasting.</p>
+        <div><span class="tag">n8n</span><span class="tag">APIs</span></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Two-way sync between apps</li><li>Duplicate checks</li><li>Instant alerts for new leads</li></ul></div></details>
       </article>
       <article class="glass card pcard" data-tilt data-cat="web">
         <div class="preview" aria-hidden="true"><div class="bf"><div class="bf-bar mono"><i></i><i></i><i></i><span>kilo-dispatch-demo.vercel.app</span></div><div class="bf-body">
@@ -836,7 +933,7 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">Courier control-room web app</p>
         <p>A control room for a courier business with a live map, an order queue and driver reassignment.</p>
         <div><span class="tag">Next.js</span><span class="tag">Vercel</span></div>
-        <div class="links"><a href="https://kilo-dispatch-demo.vercel.app" target="_blank" rel="noopener">Open live demo</a></div>
+        <div class="links"><a href="https://kilo-dispatch-demo.vercel.app" target="_blank" rel="noopener">Open live demo</a><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Live dispatch map with moving drivers</li><li>Order queue with status</li><li>Driver reassignment in a few clicks</li><li>Responsive, fast and deployed on Vercel</li></ul></div></details>
       </article>
       <article class="glass card pcard" data-tilt data-cat="web">
@@ -848,7 +945,7 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">E-commerce storefront</p>
         <p>A woven-goods storefront with filters, product galleries and a saved shopping bag. Checkout is a demonstration and takes no payments.</p>
         <div><span class="tag">Next.js</span><span class="tag">Vercel</span></div>
-        <div class="links"><a href="https://loom-and-field-demo.vercel.app" target="_blank" rel="noopener">Open live demo</a></div>
+        <div class="links"><a href="https://loom-and-field-demo.vercel.app" target="_blank" rel="noopener">Open live demo</a><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Product filters and galleries</li><li>Saved shopping bag</li><li>Clean, responsive storefront design</li><li>Deployed on Vercel</li></ul></div></details>
       </article>
       <article class="glass card pcard" data-tilt data-cat="web">
@@ -858,7 +955,7 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">Static site with case studies</p>
         <p>A fast static website with case studies, an experience timeline and a printable résumé, with light and dark themes.</p>
         <div><span class="tag">Astro</span><span class="tag">TypeScript</span><span class="tag">Playwright</span></div>
-        <div class="links"><a href="https://github.com/Ahtshamdev/Ahtshamdev.github.io" target="_blank" rel="noopener">GitHub</a><a href="https://ahtshamdev.github.io/" target="_blank" rel="noopener">Live site</a></div>
+        <div class="links"><a href="https://github.com/Ahtshamdev/Ahtshamdev.github.io" target="_blank" rel="noopener">GitHub</a><a href="https://ahtshamdev.github.io/" target="_blank" rel="noopener">Live site</a><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Case-study pages and experience timeline</li><li>Printable résumé</li><li>Light and dark themes</li><li>Automated browser tests with Playwright</li></ul></div></details>
       </article>
       <article class="glass card pcard" data-tilt data-cat="web3d">
@@ -869,71 +966,78 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
         <p class="tagline">Real-time 3D website</p>
         <p>The Nexora agency site: a shutter intro, a real-time 3D monogram with a wave field, 3D service cards and an app-style dashboard.</p>
         <div><span class="tag">Three.js</span><span class="tag">JavaScript</span><span class="tag">CSS 3D</span><span class="tag">Vercel</span></div>
-        <div class="links"><a href="https://nexora-ai-it-solutions.pages.dev/" target="_blank" rel="noopener">Visit the site</a></div>
+        <div class="links"><a href="https://nexora-ai-it-solutions.pages.dev/" target="_blank" rel="noopener">Visit the site</a><a href="#contact">Get something like this</a></div>
         <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Real-time Three.js scene on the cover page</li><li>Per-service CSS 3D animations that open on hover or tap</li><li>Dashboard-style preview section</li><li>Fast, responsive and hardened with security headers</li></ul></div></details>
       </article>
-      <article class="glass card pcard" data-tilt data-cat="ideas">
-        <div class="preview mini pv-grid" aria-hidden="true"><div class="mi-box"><b></b></div></div>
-        <span class="status">Available to build</span>
-        <h3>AI Scanner App</h3>
-        <p class="tagline">Image-analysis app</p>
-        <p>A mobile app that analyses a photo and explains what it sees: products, plants, documents or anything your business needs.</p>
-        <div><span class="tag">Android</span><span class="tag">AI vision</span></div>
-        <div class="links"><a href="#contact">Ask for this</a></div>
-      </article>
-      <article class="glass card pcard" data-tilt data-cat="ideas">
-        <div class="preview mini pv-grid" aria-hidden="true"><div class="mi-chat"><span class="u">Do you ship to Dubai?</span><span class="a"><i></i><i></i><i></i></span></div></div>
-        <span class="status">Available to build</span>
-        <h3>Customer Support Agent</h3>
-        <p class="tagline">AI agent</p>
-        <p>An agent trained on your business that answers customers day and night and hands over to you when needed.</p>
-        <div><span class="tag">AI agent</span><span class="tag">Webhook</span></div>
-        <div class="links"><a href="#contact">Ask for this</a></div>
-      </article>
-      <article class="glass card pcard" data-tilt data-cat="ideas">
-        <div class="preview mini pv-grid" aria-hidden="true"><div class="mi-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="mi-chip mono">BOOKED ✓</span></div>
-        <span class="status">Available to build</span>
-        <h3>Voice Booking Assistant</h3>
-        <p class="tagline">Voice AI</p>
-        <p>A voice assistant that answers calls, understands the request and books appointments.</p>
-        <div><span class="tag">Voice AI</span><span class="tag">Automation</span></div>
-        <div class="links"><a href="#contact">Ask for this</a></div>
-      </article>
-      <article class="glass card pcard" data-tilt data-cat="ideas">
-        <div class="preview mini pv-grid" aria-hidden="true"><div class="mi-doc"><u></u><u></u><u></u><u></u><b>PAID</b></div></div>
-        <span class="status">Available to build</span>
-        <h3>Invoice &amp; Report Automation</h3>
-        <p class="tagline">Automation</p>
-        <p>Invoices, reports and reminders created and sent automatically on schedule.</p>
-        <div><span class="tag">n8n</span><span class="tag">Sheets</span></div>
-        <div class="links"><a href="#contact">Ask for this</a></div>
-      </article>
-      <article class="glass card pcard" data-tilt data-cat="ideas">
-        <div class="preview mini pv-grid" aria-hidden="true"><div class="mi-a mono">CRM</div><div class="mi-b mono">SHEET</div><i class="mi-d d1"></i><i class="mi-d d2"></i></div>
-        <span class="status">Available to build</span>
-        <h3>CRM &amp; Sheets Sync</h3>
-        <p class="tagline">Automation</p>
-        <p>Keep leads, customers and orders in sync across your tools without copy-pasting.</p>
-        <div><span class="tag">n8n</span><span class="tag">APIs</span></div>
-        <div class="links"><a href="#contact">Ask for this</a></div>
-      </article>
-      <article class="glass card pcard" data-tilt data-cat="ideas">
+      <article class="glass card pcard" data-tilt data-cat="web3d">
         <div class="preview mini pv-grid" aria-hidden="true" style="perspective:500px"><div class="cube3"><div class="f1"></div><div class="f2"></div><div class="f3"></div><div class="f4"></div><div class="f5"></div><div class="f6"></div></div></div>
-        <span class="status">Available to build</span>
+        <span class="status">Project</span>
         <h3>3D Product Showcase</h3>
         <p class="tagline">3D website</p>
         <p>An interactive 3D page where customers rotate and explore your product.</p>
         <div><span class="tag">Three.js</span></div>
-        <div class="links"><a href="#contact">Ask for this</a></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Real-time 3D viewer</li><li>Smooth scroll storytelling</li><li>Fast on mobile</li></ul></div></details>
       </article>
-      <article class="glass card pcard" data-tilt data-cat="ideas">
+      <article class="glass card pcard" data-tilt data-cat="web3d">
         <div class="preview mini pf" aria-hidden="true"><div class="sheet"></div><div class="sheet"></div><div class="sheet"></div></div>
-        <span class="status">Available to build</span>
+        <span class="status">Project</span>
         <h3>3D Landing Page</h3>
         <p class="tagline">3D website</p>
         <p>A landing page with 3D scenes and animation that turns visitors into customers.</p>
         <div><span class="tag">Three.js</span><span class="tag">CSS 3D</span></div>
-        <div class="links"><a href="#contact">Ask for this</a></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Custom 3D hero scene</li><li>Animated sections</li><li>Built to convert</li></ul></div></details>
+      </article>
+      <article class="glass card pcard" data-tilt data-cat="video">
+        <div class="preview pv-grid" aria-hidden="true"><div class="vd"><div class="vd-frame"><span class="vd-s s1 mono">SNAKE</span><span class="vd-s s2 mono">PLANT</span><span class="vd-s s3 mono">CROP</span><i class="vd-play"></i></div><div class="vd-bar"><u></u></div><div class="vd-t mono"><span>NEXOHYPIC</span><span>APP AD</span></div></div></div>
+        <span class="status">Project</span>
+        <h3>NexoHypic — App Ad</h3>
+        <p class="tagline">Promo video</p>
+        <p>The advertisement video for the NexoHypic app.</p>
+        <div><span class="tag">AI video</span><span class="tag">Editing</span></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Concept, edit and delivery by Nexora</li><li>Made for social media and the app store listing</li></ul></div></details>
+      </article>
+      <article class="glass card pcard" data-tilt data-cat="video">
+        <div class="preview pv-grid" aria-hidden="true"><div class="vd"><div class="vd-frame"><div class="vd-page"><u></u><u></u><u></u><u></u><u></u><u></u></div><i class="vd-play"></i></div><div class="vd-bar"><u></u></div><div class="vd-t mono"><span>NEXOHYPIC.WEB</span><span>PROMO</span></div></div></div>
+        <span class="status">Project</span>
+        <h3>NexoHypic — Website Promo</h3>
+        <p class="tagline">Promo video</p>
+        <p>The promotional video for the NexoHypic website.</p>
+        <div><span class="tag">AI video</span><span class="tag">Editing</span></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Concept, edit and delivery by Nexora</li><li>Made for the website and social media</li></ul></div></details>
+      </article>
+      <article class="glass card pcard" data-tilt data-cat="video">
+        <div class="preview mini pv-grid" aria-hidden="true"><div class="fs"><div class="fs-t"><i>REELS</i><i>TIKTOK</i><i>YOUTUBE</i><i>REELS</i><i>TIKTOK</i><i>YOUTUBE</i></div></div></div>
+        <span class="status">Project</span>
+        <h3>Product Promo Video</h3>
+        <p class="tagline">AI video</p>
+        <p>A cinematic promo for your product or brand, ready for Reels, TikTok and YouTube.</p>
+        <div><span class="tag">AI video</span><span class="tag">Editing</span></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Script, visuals and voice-over</li><li>All social formats</li><li>Fast turnaround</li></ul></div></details>
+      </article>
+      <article class="glass card pcard" data-tilt data-cat="video">
+        <div class="preview mini pv-grid" aria-hidden="true"><div class="bn"><i class="b1 mono">1:1</i><i class="b2 mono">16:9</i><i class="b3 mono">9:16</i></div></div>
+        <span class="status">Project</span>
+        <h3>Brand Banner Pack</h3>
+        <p class="tagline">Ads &amp; banners</p>
+        <p>Social, web and ad banners in one consistent brand style.</p>
+        <div><span class="tag">Design</span></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Facebook, Instagram and YouTube sizes</li><li>Consistent colours and fonts</li><li>Editable source files</li></ul></div></details>
+      </article>
+      <article class="glass card pcard" data-tilt data-cat="video">
+        <div class="preview mini pv-grid" aria-hidden="true"><div class="cvd"><b></b><u></u><u></u><u></u><u></u><span class="mono">ATS ✓</span><s></s></div></div>
+        <span class="status">Project</span>
+        <h3>Professional CV Design</h3>
+        <p class="tagline">CV &amp; portfolio</p>
+        <p>A modern, ATS-friendly CV or portfolio that presents your skills clearly.</p>
+        <div><span class="tag">Design</span></div>
+        <div class="links"><a href="#contact">Get something like this</a></div>
+        <details class="case"><summary>What it does</summary><div class="body"><ul class="points"><li>Clean modern layout</li><li>Print and digital versions</li><li>Quick delivery</li></ul></div></details>
       </article></div>
   </section>
 
@@ -990,7 +1094,7 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="reveal">
+  <section id="toolbox" class="reveal">
     <div class="eyebrow">Toolbox</div>
     <h2>Skills &amp; <span class="grad">technology</span></h2>
     <p class="sub">What I have built with, and what I am still growing in.</p>
@@ -1188,6 +1292,12 @@ select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid
       var f = c.getAttribute("data-f");
       chips.forEach(function (x) { x.classList.toggle("on", x === c); });
       pcards.forEach(function (p) { p.classList.toggle("hide", f !== "all" && p.getAttribute("data-cat") !== f); });
+    });
+  });
+
+  $$("[data-go]").forEach(function (a) {
+    a.addEventListener("click", function () {
+      var t = $('.chip[data-f="' + a.getAttribute("data-go") + '"]'); if (t) t.click();
     });
   });
 
